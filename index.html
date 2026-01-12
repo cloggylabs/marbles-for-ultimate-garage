@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Canicas para el Ultimate Garage</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Decorative elements -->
+  <div class="stars">
+    <span class="star">⭐</span>
+    <span class="star">🌟</span>
+    <span class="star">⭐</span>
+    <span class="star">🌟</span>
+  </div>
+
+  <div class="cloud cloud-1"></div>
+  <div class="cloud cloud-2"></div>
+
+  <div class="car-decoration">🚗</div>
+
+  <!-- Main content -->
+  <h1>Canicas para el<br>Ultimate Garage</h1>
+  <p class="subtitle">🏎️ ¡Cada canica te acerca más a tu meta! 🏁</p>
+  <p class="progress-text"><span id="count">0</span> / 200 canicas</p>
+
+  <div class="jar-container">
+    <div class="jar-lid"></div>
+    <div class="jar-neck"></div>
+    <div class="jar">
+      <div class="marbles-container" id="marbles"></div>
+    </div>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+
+  <div class="controls">
+    <button class="add-btn" id="addBtn">🔮 Agregar</button>
+    <button class="reset-btn" id="resetBtn">🗑️ Vaciar</button>
+  </div>
+
+  <!-- Confetti overlay -->
+  <div class="confetti-overlay" id="confettiOverlay"></div>
+
+  <!-- Celebration modal -->
+  <div class="celebration" id="celebration">
+    <div class="emoji">🎉🏆🎊</div>
+    <h2>¡FELICIDADES!</h2>
+    <p>¡Completaste las 200 canicas!</p>
+    <p>🚗 ¡Te ganaste el Ultimate Garage! 🏎️</p>
+    <button class="close-celebration" onclick="closeCelebration()">¡Genial! 🎈</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
