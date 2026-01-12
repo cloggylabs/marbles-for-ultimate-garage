@@ -22,9 +22,13 @@ const countDisplay = document.getElementById('count');
 const marblesContainer = document.getElementById('marbles');
 const progressFill = document.getElementById('progress');
 const addBtn = document.getElementById('addBtn');
+const removeBtn = document.getElementById('removeBtn');
 const resetBtn = document.getElementById('resetBtn');
 const celebration = document.getElementById('celebration');
 const confettiOverlay = document.getElementById('confettiOverlay');
+const qtyButtons = document.querySelectorAll('.qty-btn');
+
+let selectedQty = 1;
 
 function getRandomColor() {
   return marbleColors[Math.floor(Math.random() * marbleColors.length)];
@@ -73,6 +77,7 @@ function updateDisplay() {
   countDisplay.textContent = marbleCount;
   progressFill.style.width = `${(marbleCount / TOTAL_MARBLES) * 100}%`;
   addBtn.disabled = marbleCount >= TOTAL_MARBLES;
+  removeBtn.disabled = marbleCount <= 0;
 }
 
 function saveProgress() {
@@ -122,15 +127,20 @@ function createConfetti() {
   }, 5000);
 }
 
-function addMarble() {
+function addMarbles() {
   if (marbleCount >= TOTAL_MARBLES) return;
 
-  marbleCount++;
-  marblesContainer.appendChild(createMarble(true));
+  const toAdd = Math.min(selectedQty, TOTAL_MARBLES - marbleCount);
+
+  for (let i = 0; i < toAdd; i++) {
+    marbleCount++;
+    const marble = createMarble(true);
+    marble.style.animationDelay = `${i * 0.1}s`;
+    marblesContainer.appendChild(marble);
+  }
+
   updateDisplay();
   saveProgress();
-
-  // Play a fun sound effect (using Web Audio API)
   playPopSound();
 
   if (marbleCount === TOTAL_MARBLES) {
@@ -140,6 +150,22 @@ function addMarble() {
       playVictorySound();
     }, 700);
   }
+}
+
+function removeMarbles() {
+  if (marbleCount <= 0) return;
+
+  const toRemove = Math.min(selectedQty, marbleCount);
+
+  for (let i = 0; i < toRemove; i++) {
+    if (marblesContainer.lastChild) {
+      marblesContainer.removeChild(marblesContainer.lastChild);
+      marbleCount--;
+    }
+  }
+
+  updateDisplay();
+  saveProgress();
 }
 
 function resetJar() {
@@ -205,8 +231,17 @@ function playVictorySound() {
 }
 
 // Event listeners
-addBtn.addEventListener('click', addMarble);
+addBtn.addEventListener('click', addMarbles);
+removeBtn.addEventListener('click', removeMarbles);
 resetBtn.addEventListener('click', resetJar);
+
+qtyButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    qtyButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    selectedQty = parseInt(btn.dataset.qty);
+  });
+});
 
 // Make closeCelebration available globally for onclick
 window.closeCelebration = closeCelebration;

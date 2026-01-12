@@ -244,12 +244,66 @@ h1 {
   }
 }
 
+/* Quantity selector */
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 3px solid #4ECDC4;
+}
+
+.quantity-selector span {
+  font-size: 1rem;
+  color: #5D5D5D;
+  font-weight: bold;
+}
+
+.qty-btn {
+  width: 45px;
+  height: 45px;
+  padding: 0;
+  font-size: 1.1rem;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #f0f0f0 0%, #ddd 100%);
+  color: #5D5D5D;
+  border: 3px solid #bbb;
+  box-shadow: 0 4px 0 #999;
+}
+
+.qty-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #999;
+}
+
+.qty-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #999;
+}
+
+.qty-btn.active {
+  background: linear-gradient(180deg, #FFE66D 0%, #FFD700 100%);
+  border-color: #FFA500;
+  box-shadow: 0 4px 0 #CC8400;
+  color: #5D5D5D;
+}
+
+.qty-btn.active:hover {
+  box-shadow: 0 6px 0 #CC8400;
+}
+
 /* Controls */
 .controls {
   display: flex;
-  gap: 20px;
+  gap: 15px;
   margin-top: 15px;
   z-index: 1;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 button {
@@ -305,6 +359,31 @@ button {
 .reset-btn:active {
   transform: translateY(2px);
   box-shadow: 0 2px 0 #CC4444;
+}
+
+.remove-btn {
+  background: linear-gradient(180deg, #FFA07A 0%, #FF7F50 100%);
+  color: #fff;
+  border: 4px solid #E06030;
+  box-shadow: 0 6px 0 #E06030;
+}
+
+.remove-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 9px 0 #E06030;
+}
+
+.remove-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #E06030;
+}
+
+.remove-btn:disabled {
+  background: #ccc;
+  border-color: #999;
+  box-shadow: 0 4px 0 #999;
+  cursor: not-allowed;
+  transform: none;
 }
 
 /* Progress bar */
